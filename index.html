@@ -281,7 +281,7 @@
       return;
     }
     const HttpX = new XMLHttpRequest();
-    var urlX = 'http://51.15.242.36:1880/SubmitNode?';
+    var urlX = '51.15.242.36:1880/SubmitNode?';
     urlX += "NPLGN=" + String(nomorpelanggan) + "&";
     urlX += "UC=" + String(uniquecode) + "&";
     urlX += "MA=" + String(meterawal) + "&";
@@ -307,7 +307,7 @@
       return;
     }
     const HttpX = new XMLHttpRequest();
-    var urlX = 'http://51.15.242.36:1880/CekNode?';
+    var urlX = '51.15.242.36:1880/CekNode?';
     urlX += "NodeID=" + String(nodeid);
     HttpX.open("GET", urlX);
     HttpX.send();
@@ -324,7 +324,7 @@
   function CekDCU() {
     var DCUCode = document.getElementById("DCUCodeCek").value;
     const HttpX = new XMLHttpRequest();
-    var urlX = 'http://51.15.242.36:1880/CekDCU?';
+    var urlX = '51.15.242.36:1880/CekDCU?';
     urlX += "DCUCode=" + String(DCUCode);
     HttpX.open("GET", urlX);
     HttpX.send();
