@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS & JS -->
+    <link
+      href="css/bootstrap.min.css"
+      
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous">
+    
+      <script src="js/bootstrap.bundle.js" 
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
+      crossorigin="anonymous"></script>
+    <title>Smart Water Meter - Registration & Transmit Test</title>
+    <link rel="stylesheet" href="stylecss.css">
+
+  </head>
+
+  <body>
+    <div class="container" style="margin-top: 2%;">
+      <div class="row">
+        <div class="col-md-4">
+
+
+          <main class="demo-page-content">
+
+            <section>
+              <div class="href-target" id="input-types"></div>
+              <h1>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                  viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-align-justify">
+                  <line x1="21" y1="10" x2="3" y2="10" />
+                  <line x1="21" y1="6" x2="3" y2="6" />
+                  <line x1="21" y1="14" x2="3" y2="14" />
+                  <line x1="21" y1="18" x2="3" y2="18" />
+                </svg>
+                Input Node SWM
+              </h1>
+    
+              <div class="nice-form-group">
+                <label>Nomor Pelanggan</label>
+                <input id="nomorpelanggan"  style="width: 100%;" type="number"
+                  placeholder="Nomor Pelanggan" value />
+              </div>
+    
+              <div class="nice-form-group">
+                <label>Unique Code</label>
+                <input id="uniquecode" style="width: 100%;" type="number" placeholder="Unique Code Node"
+                  value />
+              </div>
+    
+              <div class="nice-form-group">
+                <label>Meter Awal</label>
+                <input id="meterawal"  style="width: 100%;" type="number"
+                  placeholder="Angka Terakhir Register" value />
+              </div>
+    
+              <div class="nice-form-group" >
+                <label>Waktu</label>
+                <input id="Waktu" type="text" placeholder="00:00:00 01/01/1000"
+                  value disabled style="width: 100%;"/>
+              </div>
+              <div class="nice-form-group">
+                <div class="row">
+                  <div class="col-md-6">
+                    <button onclick="SubmitNode()" type="button" class="btn btn-primary" style="width: 100%; margin-top: 2%;">Submit</button>
+                  </div>
+                  <div class="col-md-6">
+                    <button onclick="ResetSubmit()" type="button" class="btn btn-danger" style="width: 100%;margin-top: 2%;">Reset</button>
+                  </div>
+                </div>
+                
+                
+              </div>
+              
+            </section>
+    
+          </main>
+        </div>
+        <div class="col-md-4">
+          <main class="demo-page-content">
+
+            <section>
+              <div class="href-target" id="input-types"></div>
+              <h1>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                  viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-align-justify">
+                  <line x1="21" y1="10" x2="3" y2="10" />
+                  <line x1="21" y1="6" x2="3" y2="6" />
+                  <line x1="21" y1="14" x2="3" y2="14" />
+                  <line x1="21" y1="18" x2="3" y2="18" />
+                </svg>
+                Cek Node SWM
+              </h1>
+    
+              <div class="nice-form-group">
+                
+                <label>Unique Code Node</label>
+                <input id="NodeIDCek" style="width: 100%;" type="number" placeholder="Unique Code Node"
+                  value />
+                  <div class="row" >
+                    <div class="col-md-6" style="margin-top: 2%;">
+                      <button onclick="CekNode()" class="btn btn-primary" style="width: 100%; margin-top: 2%;">Cek</button>
+                    </div>
+                    <div class="col-md-6" style="margin-top: 2%;">
+                      <button onclick="ResetNode()" class="btn btn-danger" style="width: 100%; margin-top: 2%;">Reset</button>
+                    </div>
+                  </div>
+                  
+                
+              </div>
+    
+              <div class="nice-form-group">
+                <label>Status</label>
+                <input id="statusNodeID" style="width: 100%;" type="text" placeholder="-" value
+                  disabled />
+              </div>
+    
+              <div class="nice-form-group">
+                <label>Waktu Record Terakhir</label>
+                <input id="WaktuCekNode"  style="width: 100%;" type="text"
+                  placeholder="last update..." value disabled />
+              </div>
+
+
+              <div class="nice-form-group">
+                <label>Kubikasi</label>
+                <input id="KubikasiCekNode"  style="width: 100%;" type="text"
+                  placeholder="0" value disabled />
+              </div>
+    
+              <!-- <div class="container col-md-12">
+                <div class="mb-5">
+                    <label for="Image" class="form-label"> </label>
+                    <input class="form-control" type="file" id="formFile" onchange="preview()">
+                    <button onclick="clearImage()" class="btn btn-primary mt-3">Save Image</button>
+                </div>
+                <img id="frame" src="" class="img-fluid" />
+            </div>
+    
+            <script>
+                function preview() {
+                    frame.src = URL.createObjectURL(event.target.files[0]);
+                }
+
+
+                function clearImage() {
+
+
+                    document.getElementById('formFile').value = null;
+                    frame.src = "";
+                }
+            </script> -->
+
+
+
+
+
+
+
+
+
+
+            </section>
+    
+          </main>
+        </div>
+        <div class="col-md-4">
+          <main class="demo-page-content">
+
+            <section>
+              <div class="href-target" id="input-types"></div>
+              <h1>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                  viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-align-justify">
+                  <line x1="21" y1="10" x2="3" y2="10" />
+                  <line x1="21" y1="6" x2="3" y2="6" />
+                  <line x1="21" y1="14" x2="3" y2="14" />
+                  <line x1="21" y1="18" x2="3" y2="18" />
+                </svg>
+                Cek DCU SWM
+              </h1>
+    
+              <div class="nice-form-group">
+                <label>DCU Code</label>
+                <input id="DCUCodeCek" style="width: 100%;" type="number" placeholder="DCU Code" value />
+
+                <div class="row" >
+                    <div class="col-md-6" style="margin-top: 2%;">
+                      <button onclick="CekDCU()" class="btn btn-primary" style="width: 100%; margin-top: 2%;">Cek</button>
+                    </div>
+                    <div class="col-md-6" style="margin-top: 2%;">
+                      <button onclick="ResetDCU()" class="btn btn-danger" style="width: 100%; margin-top: 2%;">Reset</button>
+                    </div>
+                </div>
+                
+                
+              </div>
+    
+              <div class="nice-form-group">
+                <label>Status</label>
+                <input id="statusDCUCode" style="width: 100%;" type="text" placeholder="-" value
+                  disabled />
+              </div>
+    
+              <div class="nice-form-group">
+                <label>Waktu Record Terakhir</label>
+                <input id="WaktuCekDCU" style="width: 100%;" type="text"
+                  placeholder="last update..." value disabled />
+              </div>
+    
+            </section>
+    
+          </main>
+        </div>
+      </div>
+    </div>
+
+      
+      
+      
+    </div>
+  </body>
+
+</html>
+
+<script>
+  function updatewaktu() {
+    document.getElementById("Waktu").value = converttodate(Date.now());
+    setTimeout(() => {
+      updatewaktu();
+    }, 1000);
+  }
+
+  function converttodate(epoch) {
+    var dd = epoch;
+    var x = Math.round(parseInt(String(dd)) / 1000 + (3600 * 7));
+    var d = new Date(0);
+    d.setUTCSeconds(x);
+    var res = formatDate(d);
+    return res;
+  }
+
+  function formatDate(inputDate) {
+    var date = new Date(inputDate);
+
+    var hours = ("0" + date.getUTCHours()).slice(-2);
+    var minutes = ("0" + date.getUTCMinutes()).slice(-2);
+    var seconds = ("0" + date.getUTCSeconds()).slice(-2);
+    var day = ("0" + date.getUTCDate()).slice(-2);
+    var month = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+    var year = date.getUTCFullYear();
+
+    var formattedDate = hours + ":" + minutes + ":" + seconds + " " + day + "/" + month + "/" + year;
+
+    return formattedDate;
+  }
+  updatewaktu();
+
+  function SubmitNode() {
+    var nomorpelanggan = document.getElementById("nomorpelanggan").value;
+    var uniquecode = document.getElementById("uniquecode").value;
+    var meterawal = document.getElementById("meterawal").value;
+    var waktu = document.getElementById("Waktu").value;
+
+    if (!(nomorpelanggan.length && uniquecode.length && meterawal.length && waktu.length)) {
+      alert("Mohon Lengkapi Form");
+      return;
+    }
+    const HttpX = new XMLHttpRequest();
+    var urlX = 'http://51.15.242.36:1880/SubmitNode?';
+    urlX += "NPLGN=" + String(nomorpelanggan) + "&";
+    urlX += "UC=" + String(uniquecode) + "&";
+    urlX += "MA=" + String(meterawal) + "&";
+    urlX += "wkt=" + String(Date.now());
+    HttpX.open("GET", urlX);
+    HttpX.send();
+    HttpX.onreadystatechange = (e) => {
+      if (HttpX.readyState == 4 && HttpX.status == 200) {
+        var Text = HttpX.responseText;
+        var JSONA = JSON.parse(Text);
+        if (JSONA.stat == "OK") {
+          alert("Data berhasil Terinput");
+        }else{
+	  alert("Data Gagal Terinput");
+	}
+      }
+    }
+  }
+  function CekNode() {
+    var nodeid = document.getElementById("NodeIDCek").value;
+    if (!(nodeid.length)) {
+      alert("Mohon Lengkapi Unique Code Node untuk pengecekan");
+      return;
+    }
+    const HttpX = new XMLHttpRequest();
+    var urlX = 'http://51.15.242.36:1880/CekNode?';
+    urlX += "NodeID=" + String(nodeid);
+    HttpX.open("GET", urlX);
+    HttpX.send();
+    HttpX.onreadystatechange = (e) => {
+      if (HttpX.readyState == 4 && HttpX.status == 200) {
+        var Text = HttpX.responseText;
+        var JSONA = JSON.parse(Text);
+        document.getElementById("statusNodeID").value = JSONA.stat;
+        document.getElementById("WaktuCekNode").value = (JSONA.waktu);
+        document.getElementById("KubikasiCekNode").value = JSONA.cacahan;
+      }
+    }
+  }
+  function CekDCU() {
+    var DCUCode = document.getElementById("DCUCodeCek").value;
+    const HttpX = new XMLHttpRequest();
+    var urlX = 'http://51.15.242.36:1880/CekDCU?';
+    urlX += "DCUCode=" + String(DCUCode);
+    HttpX.open("GET", urlX);
+    HttpX.send();
+    HttpX.onreadystatechange = (e) => {
+      if (HttpX.readyState == 4 && HttpX.status == 200) {
+        var Text = HttpX.responseText;
+        var JSONA = JSON.parse(Text);
+        document.getElementById("statusDCUCode").value = JSONA.stat;
+        document.getElementById("WaktuCekDCU").value = (JSONA.waktu);
+      }
+    }
+  }
+  function ResetSubmit() {
+    document.getElementById("nomorpelanggan").value = "";
+    document.getElementById("uniquecode").value = "";
+    document.getElementById("meterawal").value = "";
+    document.getElementById("Waktu").value = "";
+  }
+  function ResetNode() {
+    document.getElementById("NodeIDCek").value = "";
+    document.getElementById("statusNodeID").value = "";
+    document.getElementById("WaktuCekNode").value = "";
+  }
+  function ResetDCU() {
+    document.getElementById("DCUCodeCek").value = "";
+    document.getElementById("statusDCUCode").value = "";
+    document.getElementById("WaktuCekDCU").value = "";
+  }
+</script>
